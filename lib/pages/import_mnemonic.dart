@@ -30,7 +30,7 @@ class ImportMnemonic extends StatelessWidget {
                         Text(
                           'mnemonics',
                           style: TextStyle(
-                            color: theme.textColor1,
+                            color: theme.primaryColor1,
                           ),
                         ),
                         Container(
@@ -68,7 +68,7 @@ class ImportMnemonic extends StatelessWidget {
                       left: 80,
                       right: 80,
                     ),
-                    child: Text('下一步'),
+                    child: Text('Done'),
                   ),
                 )
               ],

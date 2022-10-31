@@ -22,7 +22,7 @@ class WelcomePage extends StatelessWidget {
               text,
               style: TextStyle(
                 fontSize: 16,
-                color: theme.textColor1,
+                color: theme.primaryColor2,
               ),
             )
           ],
@@ -52,7 +52,8 @@ class WelcomePage extends StatelessWidget {
                       buildRowGap(12.0),
                       Text(
                         'SuiLove',
-                        style: TextStyle(fontSize: 32, color: theme.textColor1),
+                        style:
+                            TextStyle(fontSize: 32, color: theme.primaryColor1),
                       )
                     ],
                   ),
@@ -61,7 +62,7 @@ class WelcomePage extends StatelessWidget {
                     'Welcome to SuiLove Wallet',
                     style: TextStyle(
                       fontSize: 22,
-                      color: theme.textColor1,
+                      color: theme.primaryColor1,
                     ),
                   ),
                   Padding(
@@ -71,7 +72,7 @@ class WelcomePage extends StatelessWidget {
                       'Connecting you to the decentralized web and SUI network.',
                       style: TextStyle(
                         fontSize: 16,
-                        color: theme.textColor2,
+                        color: theme.primaryColor1,
                       ),
                       textAlign: TextAlign.center,
                     ),

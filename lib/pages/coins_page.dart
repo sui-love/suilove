@@ -23,7 +23,7 @@ class CoinsPage extends StatelessWidget {
           buildColumnGap(12.0),
           Text(
             'Avalible balance',
-            style: TextStyle(color: theme.textColor2),
+            style: TextStyle(color: theme.primaryColor1),
           ),
           buildColumnGap(12.0),
           Row(
@@ -33,14 +33,14 @@ class CoinsPage extends StatelessWidget {
               Obx(() => Text(
                     moneyFormat(sui.primaryCoinBalance.value),
                     style: TextStyle(
-                        color: theme.textColor1,
+                        color: theme.primaryColor1,
                         fontSize: 28,
                         fontWeight: FontWeight.bold),
                   )),
               buildRowGap(4.0),
               Text(
                 'sui',
-                style: TextStyle(color: theme.textColor2, fontSize: 24),
+                style: TextStyle(color: theme.primaryColor1, fontSize: 24),
               )
             ],
           ),
@@ -48,7 +48,7 @@ class CoinsPage extends StatelessWidget {
             children: [
               Obx(() => Text(
                     '${sui.publicAddressFuzzyed}',
-                    style: TextStyle(color: theme.textColor2),
+                    style: TextStyle(color: theme.primaryColor1),
                   )),
               IconButton(
                   onPressed: () {
@@ -80,7 +80,7 @@ class CoinsPage extends StatelessWidget {
                 child: CardButton(
                     theme: theme,
                     text: 'Send',
-                    icon: svgSend(),
+                    icon: svgSend(color: theme.textColor1),
                     backgroundColor:
                         MaterialStateProperty.all(theme.primaryColor1),
                     onPressed: () {
@@ -94,7 +94,7 @@ class CoinsPage extends StatelessWidget {
                 child: CardButton(
                   theme: theme,
                   text: 'Receive',
-                  icon: svgReceive(),
+                  icon: svgReceive(color: theme.textColor1),
                   backgroundColor:
                       MaterialStateProperty.all(theme.primaryColor2),
                 ),
@@ -109,7 +109,7 @@ class CoinsPage extends StatelessWidget {
                 child: CardButton(
                   theme: theme,
                   text: 'Stack & Earn',
-                  icon: svgStack(),
+                  icon: svgStack(color: theme.textColor1),
                   backgroundColor:
                       MaterialStateProperty.all(theme.primaryColor2),
                 ),
@@ -120,7 +120,7 @@ class CoinsPage extends StatelessWidget {
                 child: CardButton(
                   theme: theme,
                   text: 'Swap',
-                  icon: svgSwap(),
+                  icon: svgSwap(color: theme.textColor1),
                   backgroundColor:
                       MaterialStateProperty.all(theme.primaryColor2),
                 ),
@@ -130,7 +130,7 @@ class CoinsPage extends StatelessWidget {
           buildColumnGap(24.0),
           Text(
             'All Assets',
-            style: TextStyle(fontSize: 16, color: theme.textColor1),
+            style: TextStyle(fontSize: 16, color: theme.primaryColor1),
           ),
           buildColumnGap(12.0),
           Expanded(

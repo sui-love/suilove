@@ -58,7 +58,7 @@ class LandingPage extends StatelessWidget {
                         'Create a new wallet or import your existing wallet by 12-word seed phrase.',
                         style: TextStyle(
                           fontSize: 16,
-                          color: theme.textColor2,
+                          color: theme.primaryColor1,
                         ),
                       ),
                     ],

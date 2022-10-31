@@ -58,7 +58,7 @@ class CreateWalletPage extends StatelessWidget {
                         'Creating a wallet generates new recovery passphrase. Using it you can backup and restore your wallet.',
                         style: TextStyle(
                           fontSize: 16,
-                          color: theme.textColor2,
+                          color: theme.primaryColor1,
                         ),
                       ),
                     ],

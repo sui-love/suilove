@@ -86,7 +86,7 @@ class _SendSheetState extends State<SendSheet> {
   Widget build(BuildContext context) {
     return Container(
       height: 600,
-      color: theme.primaryColor2,
+      color: theme.backgroundColor1,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -101,7 +101,7 @@ class _SendSheetState extends State<SendSheet> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: theme.textColor1,
+                    color: theme.primaryColor1,
                     fontSize: 16),
               )),
               IconButton(
@@ -120,7 +120,7 @@ class _SendSheetState extends State<SendSheet> {
                 buildColumnGap(8.0),
                 Text(
                   'Amount',
-                  style: TextStyle(color: theme.textColor2),
+                  style: TextStyle(color: theme.primaryColor1),
                 ),
                 buildColumnGap(8.0),
                 TextFormField(
@@ -137,12 +137,12 @@ class _SendSheetState extends State<SendSheet> {
                       filled: true,
                       border: InputBorder.none,
                       hintText: 'Total SUI to send',
-                      hintStyle: TextStyle(color: theme.textColor2)),
+                      hintStyle: TextStyle(color: theme.textColor1)),
                 ),
                 buildColumnGap(8.0),
                 Text(
                   'Address',
-                  style: TextStyle(color: theme.textColor2),
+                  style: TextStyle(color: theme.primaryColor1),
                 ),
                 buildColumnGap(8.0),
                 TextFormField(
@@ -158,7 +158,7 @@ class _SendSheetState extends State<SendSheet> {
                       filled: true,
                       border: InputBorder.none,
                       hintText: '0x..',
-                      hintStyle: TextStyle(color: theme.textColor2)),
+                      hintStyle: TextStyle(color: theme.textColor1)),
                 ),
                 buildColumnGap(18.0),
                 Container(
@@ -176,7 +176,7 @@ class _SendSheetState extends State<SendSheet> {
                             moneyFormat(
                                 int.tryParse(amountController.text) ?? 0),
                             style: TextStyle(
-                                color: theme.textColor1,
+                                color: theme.primaryColor1,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 22),
                           ),
@@ -184,7 +184,7 @@ class _SendSheetState extends State<SendSheet> {
                           Text(
                             'SUI',
                             style: TextStyle(
-                              color: theme.textColor2,
+                              color: theme.primaryColor2,
                             ),
                           ),
                         ],
@@ -201,13 +201,13 @@ class _SendSheetState extends State<SendSheet> {
                           Text(
                             'Gas Fee',
                             style: TextStyle(
-                              color: theme.textColor2,
+                              color: theme.primaryColor1,
                             ),
                           ),
                           Text(
                             '${moneyFormat(sui.gasDefault.value)} SUI',
                             style: TextStyle(
-                              color: theme.textColor1,
+                              color: theme.primaryColor1,
                             ),
                           ),
                         ],
@@ -219,13 +219,13 @@ class _SendSheetState extends State<SendSheet> {
                           Text(
                             'Total Amount',
                             style: TextStyle(
-                              color: theme.textColor2,
+                              color: theme.primaryColor1,
                             ),
                           ),
                           Text(
                             '${moneyFormat((int.tryParse(amountController.text) ?? 0) + sui.gasDefault.value)} SUI',
                             style: TextStyle(
-                              color: theme.textColor1,
+                              color: theme.primaryColor1,
                             ),
                           ),
                         ],

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:suilove/controller/global_theme_controller.dart';
+
+GlobalThemeController theme = GlobalThemeController();
 
 svgLogo({double? height, double? width}) {
   return SvgPicture.asset(
@@ -16,7 +19,7 @@ svgTick({Color? color}) {
     semanticsLabel: 'Tick',
     height: 20,
     width: 20,
-    color: color ?? Colors.white,
+    color: color ?? theme.primaryColor1,
   );
 }
 
@@ -26,7 +29,7 @@ svgBack({Color? color}) {
     semanticsLabel: 'Back',
     height: 25,
     width: 25,
-    color: color ?? Colors.white,
+    color: color ?? theme.primaryColor1,
   );
 }
 
@@ -63,7 +66,7 @@ svgMenu({double? height, double? width, Color? color}) {
     semanticsLabel: 'Menu',
     height: height ?? 26,
     width: width ?? 26,
-    color: color ?? Colors.white,
+    color: color ?? theme.primaryColor1,
   );
 }
 
@@ -73,7 +76,7 @@ svgCoins({double? height, double? width, Color? color}) {
     semanticsLabel: 'Coins',
     height: height ?? 28,
     width: width ?? 28,
-    color: color ?? Colors.white,
+    color: color ?? theme.primaryColor1,
   );
 }
 
@@ -83,7 +86,7 @@ svgNFTs({double? height, double? width, Color? color}) {
     semanticsLabel: 'NFTs',
     height: height ?? 24,
     width: width ?? 24,
-    color: color ?? Colors.white,
+    color: color ?? theme.primaryColor1,
   );
 }
 
@@ -93,7 +96,7 @@ svgApps({double? height, double? width, Color? color}) {
     semanticsLabel: 'Apps',
     height: height ?? 21,
     width: width ?? 21,
-    color: color ?? Colors.white,
+    color: color ?? theme.primaryColor1,
   );
 }
 
@@ -103,7 +106,7 @@ svgActivity({double? height, double? width, Color? color}) {
     semanticsLabel: 'Activity',
     height: height ?? 24,
     width: width ?? 24,
-    color: color ?? Colors.white,
+    color: color ?? theme.primaryColor1,
   );
 }
 
@@ -113,7 +116,7 @@ svgSend({double? height, double? width, Color? color}) {
     semanticsLabel: 'Send',
     height: height ?? 22,
     width: width ?? 22,
-    color: color ?? Colors.white,
+    color: color ?? theme.primaryColor1,
   );
 }
 
@@ -123,7 +126,7 @@ svgReceive({double? height, double? width, Color? color}) {
     semanticsLabel: 'Receive',
     height: height ?? 22,
     width: width ?? 22,
-    color: color ?? Colors.white,
+    color: color ?? theme.primaryColor1,
   );
 }
 
@@ -133,7 +136,7 @@ svgSwap({double? height, double? width, Color? color}) {
     semanticsLabel: 'Swap',
     height: height ?? 24,
     width: width ?? 24,
-    color: color ?? Colors.white,
+    color: color ?? theme.primaryColor1,
   );
 }
 
@@ -143,7 +146,7 @@ svgStack({double? height, double? width, Color? color}) {
     semanticsLabel: 'Stack',
     height: height ?? 24,
     width: width ?? 24,
-    color: color ?? Colors.white,
+    color: color ?? theme.primaryColor1,
   );
 }
 
@@ -153,7 +156,7 @@ svgCopy({double? height, double? width, Color? color}) {
     semanticsLabel: 'Copy',
     height: height ?? 14,
     width: width ?? 14,
-    color: color ?? Colors.white,
+    color: color ?? theme.primaryColor1,
   );
 }
 
@@ -163,7 +166,7 @@ svgTSend({double? height, double? width, Color? color}) {
     semanticsLabel: 'Transaction Send',
     height: height ?? 18,
     width: width ?? 18,
-    color: color ?? Colors.white,
+    color: color ?? theme.primaryColor1,
   );
 }
 
@@ -173,7 +176,7 @@ svgTReceive({double? height, double? width, Color? color}) {
     semanticsLabel: 'Transaction Receive',
     height: height ?? 18,
     width: width ?? 18,
-    color: color ?? Colors.white,
+    color: color ?? theme.primaryColor1,
   );
 }
 
@@ -183,7 +186,7 @@ svgView({double? height, double? width, Color? color}) {
     semanticsLabel: 'View',
     height: height ?? 24,
     width: width ?? 24,
-    color: color ?? Colors.white,
+    color: color ?? theme.primaryColor1,
   );
 }
 
@@ -193,6 +196,6 @@ svgClose({double? height, double? width, Color? color}) {
     semanticsLabel: 'Close',
     height: height ?? 24,
     width: width ?? 24,
-    color: color ?? Colors.white,
+    color: color ?? theme.primaryColor1,
   );
 }

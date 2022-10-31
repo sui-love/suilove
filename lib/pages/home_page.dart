@@ -38,7 +38,10 @@ class HomePage extends StatelessWidget {
           () {
             final text = Text(
               appBarLabels[layout.homeIndex.value],
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  color: theme.primaryColor1),
             );
             if (layout.homeIndex.value > 0) {
               return Row(children: [buildRowGap(15.0), text]);
@@ -67,25 +70,32 @@ class HomePage extends StatelessWidget {
             items: [
               SalomonBottomBarItem(
                   icon: svgCoins(color: theme.primaryColor1),
-                  title: const Text(
+                  title: Text(
                     'Coins',
+                    style: TextStyle(color: theme.primaryColor2),
                   ),
                   selectedColor: theme.primaryColor1),
               SalomonBottomBarItem(
                   icon: svgNFTs(color: theme.primaryColor1),
-                  title: const Text(
+                  title: Text(
                     'NFTs',
-                  )),
+                    style: TextStyle(color: theme.primaryColor2),
+                  ),
+                  selectedColor: theme.primaryColor1),
               SalomonBottomBarItem(
                   icon: svgApps(color: theme.primaryColor1),
-                  title: const Text(
+                  title: Text(
                     'Apps',
-                  )),
+                    style: TextStyle(color: theme.primaryColor2),
+                  ),
+                  selectedColor: theme.primaryColor1),
               SalomonBottomBarItem(
                   icon: svgActivity(color: theme.primaryColor1),
                   title: Text(
                     appBarLabels[3],
-                  ))
+                    style: TextStyle(color: theme.primaryColor2),
+                  ),
+                  selectedColor: theme.primaryColor1)
             ],
             onTap: (i) => layout.setHomeIndex(i),
           )),

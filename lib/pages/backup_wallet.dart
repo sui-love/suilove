@@ -59,7 +59,7 @@ class BackupWalletPage extends StatelessWidget {
                         'Backup Recovery Passphrase.',
                         style: TextStyle(
                           fontSize: 16,
-                          color: theme.textColor2,
+                          color: theme.primaryColor1,
                         ),
                       ),
                       buildColumnGap(12.0),
