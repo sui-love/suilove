@@ -61,7 +61,13 @@ class SuiWalletController extends GetxController {
   deleteWallet() async {
     if (hasWallet) {
       safeStorage.deleteAll();
-      loadStorageWallet();
+      wallets = [].obs;
+      primaryCoinBalance = (0.0).obs;
+      publicAddress = ''.obs;
+      publicAddressFuzzyed = ''.obs;
+      transactions = [].obs;
+      NFTs = [].obs;
+      gasDefault = 0.obs;
     }
   }
 
