@@ -12,7 +12,6 @@ SuiWalletController suiWallet = SuiWalletController();
 GlobalThemeController theme = GlobalThemeController();
 GlobalLayoutController layout = GlobalLayoutController();
 
-// test CI
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
