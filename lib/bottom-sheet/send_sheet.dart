@@ -246,7 +246,7 @@ class _SendSheetState extends State<SendSheet> {
                     theme: theme,
                     center: true,
                     text: 'Send Coins Now',
-                    icon: svgSend(height: 18),
+                    icon: svgSend(height: 18, color: theme.textColor1),
                     onPressed: () {
                       sendCoinsNow();
                     },
