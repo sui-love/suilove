@@ -8,7 +8,7 @@
 PRODUCT_NAME = suilove
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = love.suilove.suilove
+PRODUCT_BUNDLE_IDENTIFIER = love.sui.suilove
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2022 love.suilove. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2022 love.sui. All rights reserved.

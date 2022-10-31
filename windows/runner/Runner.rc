@@ -89,11 +89,11 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "love.suilove" "\0"
+            VALUE "CompanyName", "love.sui" "\0"
             VALUE "FileDescription", "suilove" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "suilove" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2022 love.suilove. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2022 love.sui. All rights reserved." "\0"
             VALUE "OriginalFilename", "suilove.exe" "\0"
             VALUE "ProductName", "suilove" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"

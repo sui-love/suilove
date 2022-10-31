@@ -1,4 +1,4 @@
-package love.suilove.suilove;
+package love.sui.suilove;
 
 import io.flutter.embedding.android.FlutterActivity;
 
