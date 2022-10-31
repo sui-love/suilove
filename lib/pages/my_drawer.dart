@@ -20,7 +20,7 @@ class MyDrawer extends StatelessWidget {
         children: <Widget>[
           UserAccountsDrawerHeader(
             accountName:
-                Text('SuiPort', style: TextStyle(fontWeight: FontWeight.bold)),
+                Text('SuiLove', style: TextStyle(fontWeight: FontWeight.bold)),
             decoration: BoxDecoration(
               color: theme.primaryColor2,
               image: DecorationImage(
@@ -42,7 +42,7 @@ class MyDrawer extends StatelessWidget {
               // ignore: prefer_const_constructors
               // trailing: Icon(Icons.message, color: Colors.black12, size: 22.0),
               // ignore: deprecated_member_use
-              onTap: () => launch('https://github.com/SuiPortDAO/SuiPort')),
+              onTap: () => launch('https://github.com/sui-love/suilove')),
           ListTile(
             // ignore: prefer_const_constructors
             title: Text(

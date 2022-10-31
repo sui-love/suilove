@@ -47,7 +47,7 @@ class LandingPage extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'SuiPort Wallet',
+                        'SuiLove',
                         style: TextStyle(
                           color: theme.svgColor1,
                           fontSize: 24,

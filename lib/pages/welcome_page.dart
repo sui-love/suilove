@@ -51,14 +51,14 @@ class WelcomePage extends StatelessWidget {
                       svgLogo(),
                       buildRowGap(12.0),
                       Text(
-                        'SuiPort',
+                        'SuiLove',
                         style: TextStyle(fontSize: 32, color: theme.textColor1),
                       )
                     ],
                   ),
                   buildColumnGap(50.0),
                   Text(
-                    'Welcome to SuiPort Wallet',
+                    'Welcome to SuiLove Wallet',
                     style: TextStyle(
                       fontSize: 22,
                       color: theme.textColor1,

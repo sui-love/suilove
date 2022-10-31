@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
     GlobalThemeController theme = Get.find();
     SuiWalletController sui = Get.find();
     GlobalLayoutController layout = Get.find();
-    const appBarLabels = ['SuiPort', 'NFTs', 'Apps', 'Activity'];
+    const appBarLabels = ['SuiLove', 'NFTs', 'Apps', 'Activity'];
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(

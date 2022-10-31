@@ -38,7 +38,7 @@ class _NftsPageState extends State<NFTsPage> {
   }
 
   mintDemoNFT() async {
-    const name = 'Example SuiPort NFT';
+    const name = 'Example SuiLove NFT';
     const desc = 'An example NFT created by demo Dapp';
     const url =
         'ipfs://bafkreibngqhl3gaa7daob4i2vccziay2jjlp435cf66vhono7nrvww53ty';
