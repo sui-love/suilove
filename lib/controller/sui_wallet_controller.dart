@@ -61,6 +61,7 @@ class SuiWalletController extends GetxController {
   deleteWallet() async {
     if (hasWallet) {
       safeStorage.deleteAll();
+      loadStorageWallet();
     }
   }
 
