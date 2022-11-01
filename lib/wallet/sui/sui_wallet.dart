@@ -102,6 +102,7 @@ class SuiWallet implements Wallet {
   Future<void> initWallet() async {
     _publicAddress = await getPublicAddress();
     _publicAddressFuzzy = addressFuzzy(_publicAddress);
+    _update();
     _ownedObjectBatch = await getOwnedObjectBatch();
     _balance = await getBalance();
     _NFTs = await getNFTs();
