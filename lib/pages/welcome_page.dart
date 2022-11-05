@@ -92,8 +92,6 @@ class _WelcomePageState extends State<WelcomePage> {
           superlikeAction: () {},
           onSlideUpdate: (SlideRegion? region) async {}));
     }
-
-    setState(() {});
   }
 
   @override
@@ -187,6 +185,8 @@ class _WelcomePageState extends State<WelcomePage> {
               Expanded(
                 child: SwipeCards(
                     matchEngine: _matchEngine,
+                    upSwipeAllowed: false,
+                    fillSpace: false,
                     onStackFinished: () {
                       // _updateSwipeItems();
                     },
@@ -197,9 +197,6 @@ class _WelcomePageState extends State<WelcomePage> {
                       }
                     },
                     itemBuilder: (BuildContext context, int index) {
-                      if (_swipeItems[index] == null) {
-                        return Container();
-                      }
                       return UserCard(
                           theme: theme,
                           userCardData: _swipeItems[index].content);
