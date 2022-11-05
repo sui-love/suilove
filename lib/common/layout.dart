@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:suilove/utils/format.dart';
+import 'package:suilove/common/svg.dart';
 import '../controller/global_theme_controller.dart';
-import '../wallet/sui/sui_api.dart';
+import '../pages/welcome_page.dart';
 
 buildColumnGap(height) {
   return Container(height: height);
@@ -170,31 +170,25 @@ class CardButton extends StatelessWidget {
   }
 }
 
-class NFTCard extends StatelessWidget {
-  const NFTCard({
+class UserCard extends StatelessWidget {
+  const UserCard({
     Key? key,
     required this.theme,
-    required this.suiObject,
+    required this.userCardData,
   }) : super(key: key);
 
   final GlobalThemeController theme;
-  final SuiObject suiObject;
+  final UserCardData userCardData;
 
   @override
   Widget build(BuildContext context) {
-    String mediaUrl = (suiObject.fields['url'] ?? '');
-    mediaUrl =
-        mediaUrl.replaceFirst(RegExp(r'^ipfs:\/\/'), 'https://ipfs.io/ipfs/');
-    final name = suiObject.fields['name'] ?? '';
-    final objectId = suiObject.fields['id']?['id'] ?? '';
-
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: theme.primaryColor2,
+        borderRadius: BorderRadius.circular(16),
+        color: theme.primaryColor2.withOpacity(0.2),
         boxShadow: [
           BoxShadow(
-            color: theme.backgroundColor1.withOpacity(0.4),
+            color: Color(0x11000000),
             spreadRadius: 3,
             blurRadius: 7,
             offset: const Offset(0, 3),
@@ -206,56 +200,61 @@ class NFTCard extends StatelessWidget {
         children: [
           Flexible(
             child: Container(
+              alignment: Alignment.bottomLeft,
               decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10),
-                  ),
+                  borderRadius: const BorderRadius.all(Radius.circular(16)),
                   image: DecorationImage(
-                      fit: BoxFit.cover, image: NetworkImage(mediaUrl))),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.all(15),
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(10),
-                bottomRight: Radius.circular(10),
-              ),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  name,
-                  style: TextStyle(
-                    color: theme.textColor1,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
-                ),
-                buildColumnGap(8.0),
-                Row(
+                      fit: BoxFit.cover,
+                      image: NetworkImage(userCardData.img))),
+              child: Container(
+                height: 93,
+                padding: EdgeInsets.all(18),
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Object Id',
-                      style: TextStyle(
-                        color: theme.textColor2,
-                        fontSize: 15,
-                      ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          userCardData.name,
+                          style: TextStyle(
+                              fontSize: 32,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFFFFFFFF)),
+                        ),
+                        Row(
+                          children: [
+                            buildRowGap(1.0),
+                            svgLocation(),
+                            buildRowGap(8.0),
+                            Text(
+                              userCardData.location,
+                              style: TextStyle(
+                                  fontSize: 16, color: Color(0xFF988DA2)),
+                            )
+                          ],
+                        )
+                      ],
                     ),
-                    Text(
-                      addressFuzzy(objectId),
-                      style: TextStyle(
-                        color: theme.textColor2,
-                        fontSize: 15,
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+                      decoration: BoxDecoration(
+                        color: Color(0x33FF9877),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(16)),
                       ),
-                    ),
+                      child: Text(
+                        '${userCardData.age}age',
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: Color(0xFFFF9877),
+                            fontWeight: FontWeight.bold),
+                      ),
+                    )
                   ],
-                )
-              ],
+                ),
+              ),
             ),
           ),
         ],

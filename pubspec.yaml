@@ -116,6 +116,12 @@ flutter:
     - t_receive.svg
     - view.svg
     - close.svg
+    - delete.svg
+    - discord.svg
+    - like.svg
+    - product.svg
+    - star.svg
+    - location.svg
 
     - usdt.png
 

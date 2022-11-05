@@ -199,3 +199,57 @@ svgClose({double? height, double? width, Color? color}) {
     color: color ?? theme.primaryColor1,
   );
 }
+
+svgDelete({double? height, double? width, Color? color}) {
+  return SvgPicture.asset(
+    'assets/delete.svg',
+    semanticsLabel: 'Delete',
+    height: height ?? 62,
+    width: width ?? 62,
+  );
+}
+
+svgDiscord({double? height, double? width, Color? color}) {
+  return SvgPicture.asset(
+    'assets/discord.svg',
+    semanticsLabel: 'Discord',
+    height: height ?? 24,
+    width: width ?? 24,
+  );
+}
+
+svgLike({double? height, double? width, Color? color}) {
+  return SvgPicture.asset(
+    'assets/like.svg',
+    semanticsLabel: 'Like',
+    height: height ?? 62,
+    width: width ?? 62,
+  );
+}
+
+svgProduct({double? height, double? width, Color? color}) {
+  return SvgPicture.asset(
+    'assets/product.svg',
+    semanticsLabel: 'Product',
+    height: height ?? 24,
+    width: width ?? 24,
+  );
+}
+
+svgStar({double? height, double? width, Color? color}) {
+  return SvgPicture.asset(
+    'assets/star.svg',
+    semanticsLabel: 'Star',
+    height: height ?? 30,
+    width: width ?? 30,
+  );
+}
+
+svgLocation({double? height, double? width, Color? color}) {
+  return SvgPicture.asset(
+    'assets/location.svg',
+    semanticsLabel: 'Location',
+    height: height ?? 16,
+    width: width ?? 16,
+  );
+}
