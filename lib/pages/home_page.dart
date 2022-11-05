@@ -5,7 +5,6 @@ import 'package:suilove/common/layout.dart';
 import 'package:suilove/common/svg.dart';
 import 'package:suilove/controller/global_layout_controller.dart';
 import 'package:suilove/controller/sui_wallet_controller.dart';
-import 'package:suilove/pages/NFTs_page.dart';
 import 'package:suilove/pages/activity_page.dart';
 import 'package:suilove/pages/apps_dart.dart';
 import 'package:suilove/pages/coins_page.dart';
@@ -13,14 +12,14 @@ import 'package:suilove/pages/my_drawer.dart';
 import '../controller/global_theme_controller.dart';
 
 class HomePage extends StatelessWidget {
-  // const HomePage({super.key});
+  HomePage({super.key});
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(context) {
     GlobalThemeController theme = Get.find();
     SuiWalletController sui = Get.find();
     GlobalLayoutController layout = Get.find();
-    const appBarLabels = ['SuiLove', 'NFTs', 'Apps', 'Activity'];
+    const appBarLabels = ['SuiLove', 'Apps', 'Activity'];
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -61,7 +60,6 @@ class HomePage extends StatelessWidget {
       backgroundColor: theme.backgroundColor1,
       body: Obx(() => [
             const CoinsPage(),
-            const NFTsPage(),
             const AppsPage(),
             const ActivityPage()
           ][layout.homeIndex.value]),
@@ -76,13 +74,6 @@ class HomePage extends StatelessWidget {
                   ),
                   selectedColor: theme.primaryColor1),
               SalomonBottomBarItem(
-                  icon: svgNFTs(color: theme.primaryColor1),
-                  title: Text(
-                    'NFTs',
-                    style: TextStyle(color: theme.primaryColor2),
-                  ),
-                  selectedColor: theme.primaryColor1),
-              SalomonBottomBarItem(
                   icon: svgApps(color: theme.primaryColor1),
                   title: Text(
                     'Apps',
@@ -92,7 +83,7 @@ class HomePage extends StatelessWidget {
               SalomonBottomBarItem(
                   icon: svgActivity(color: theme.primaryColor1),
                   title: Text(
-                    appBarLabels[3],
+                    appBarLabels[2],
                     style: TextStyle(color: theme.primaryColor2),
                   ),
                   selectedColor: theme.primaryColor1)
