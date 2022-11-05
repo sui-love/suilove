@@ -4,9 +4,10 @@ import 'package:get/get.dart';
 import 'package:suilove/common/layout.dart';
 import 'package:suilove/common/svg.dart';
 import 'package:suilove/pages/landing_page.dart';
+import 'package:swipe_cards/draggable_card.dart';
+import 'package:swipe_cards/swipe_cards.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../controller/global_theme_controller.dart';
-import 'package:appinio_swiper/appinio_swiper.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -16,8 +17,8 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> {
-  List<UserCard> cards = [];
-  AppinioSwiperController _controller = AppinioSwiperController();
+  MatchEngine _matchEngine = MatchEngine(swipeItems: []);
+  List<SwipeItem> _swipeItems = <SwipeItem>[];
 
   List<UserCardData> preLoad = [
     UserCardData(
@@ -64,14 +65,35 @@ class _WelcomePageState extends State<WelcomePage> {
             'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fpic%2F2%2F19%2Fcd979c8c90.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1670249526&t=f50c030aff665058e6200acf15b93753')
   ];
 
-  _initCards() {
-    cards.addAll(preLoad.map((e) => UserCard(theme: theme, userCardData: e)));
-  }
-
   @override
   void initState() {
+    _initMatchEngine();
     super.initState();
-    _initCards();
+  }
+
+  _initMatchEngine() {
+    for (int i = 0; i < preLoad.length; i++) {
+      _swipeItems.add(SwipeItem(
+          content: preLoad[i],
+          likeAction: () {},
+          nopeAction: () {},
+          superlikeAction: () {},
+          onSlideUpdate: (SlideRegion? region) async {}));
+    }
+    _matchEngine = MatchEngine(swipeItems: _swipeItems);
+  }
+
+  _updateSwipeItems() {
+    for (int i = 0; i < preLoad.length; i++) {
+      _swipeItems.add(SwipeItem(
+          content: preLoad[i],
+          likeAction: () {},
+          nopeAction: () {},
+          superlikeAction: () {},
+          onSlideUpdate: (SlideRegion? region) async {}));
+    }
+
+    setState(() {});
   }
 
   @override
@@ -161,17 +183,27 @@ class _WelcomePageState extends State<WelcomePage> {
                   )
                 ],
               ),
+              buildColumnGap(20.0),
               Expanded(
-                child: AppinioSwiper(
-                  controller: _controller,
-                  unlimitedUnswipe: true,
-                  cards: cards,
-                  padding: const EdgeInsets.symmetric(vertical: 28),
-                  onEnd: () {
-                    cards.addAll(preLoad
-                        .map((e) => UserCard(theme: theme, userCardData: e)));
-                  },
-                ),
+                child: SwipeCards(
+                    matchEngine: _matchEngine,
+                    onStackFinished: () {
+                      // _updateSwipeItems();
+                    },
+                    itemChanged: (SwipeItem item, int index) {
+                      print(index);
+                      if (index == _swipeItems.length - 2) {
+                        _updateSwipeItems();
+                      }
+                    },
+                    itemBuilder: (BuildContext context, int index) {
+                      if (_swipeItems[index] == null) {
+                        return Container();
+                      }
+                      return UserCard(
+                          theme: theme,
+                          userCardData: _swipeItems[index].content);
+                    }),
               ),
               buildColumnGap(20.0),
               Row(
@@ -180,13 +212,13 @@ class _WelcomePageState extends State<WelcomePage> {
                   GestureDetector(
                     child: svgDelete(),
                     onTap: () {
-                      _controller.swipeLeft();
+                      _matchEngine.currentItem?.nope();
                     },
                   ),
                   GestureDetector(
                     child: svgLike(),
                     onTap: () {
-                      _controller.swipeRight();
+                      _matchEngine.currentItem?.like();
                     },
                   )
                 ],
