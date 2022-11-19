@@ -227,13 +227,12 @@ svgLike({double? height, double? width, Color? color}) {
   );
 }
 
-svgProduct({double? height, double? width, Color? color}) {
-  return SvgPicture.asset(
-    'assets/product.svg',
-    semanticsLabel: 'Product',
-    height: height ?? 24,
-    width: width ?? 24,
-  );
+svgTwitter({double? height, double? width, Color? color}) {
+  return SvgPicture.asset('assets/twitter.svg',
+      semanticsLabel: 'Twitter',
+      height: height ?? 24,
+      width: width ?? 24,
+      color: Color(0xFF54ACEE));
 }
 
 svgStar({double? height, double? width, Color? color}) {
@@ -246,10 +245,36 @@ svgStar({double? height, double? width, Color? color}) {
 }
 
 svgLocation({double? height, double? width, Color? color}) {
+  return SvgPicture.asset('assets/location.svg',
+      semanticsLabel: 'Location',
+      height: height ?? 16,
+      width: width ?? 16,
+      color: Color(0xFFCCCCCC));
+}
+
+svgLogoL({double? height, double? width, Color? color}) {
   return SvgPicture.asset(
-    'assets/location.svg',
-    semanticsLabel: 'Location',
-    height: height ?? 16,
-    width: width ?? 16,
+    'assets/logo-l.svg',
+    semanticsLabel: 'LogoL',
+    height: height ?? 180,
+    width: width ?? 180,
+  );
+}
+
+svgUnStar({double? height, double? width, Color? color}) {
+  return SvgPicture.asset(
+    'assets/unstar.svg',
+    semanticsLabel: 'Unstar',
+    height: height ?? 80,
+    width: width ?? 80,
+  );
+}
+
+svgStared({double? height, double? width, Color? color}) {
+  return SvgPicture.asset(
+    'assets/stared.svg',
+    semanticsLabel: 'Stared',
+    height: height ?? 80,
+    width: width ?? 80,
   );
 }

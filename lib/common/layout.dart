@@ -199,63 +199,70 @@ class UserCard extends StatelessWidget {
       child: Column(
         children: [
           Flexible(
-            child: Container(
-              alignment: Alignment.bottomLeft,
-              decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(16)),
-                  image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(userCardData.img))),
-              child: Container(
-                height: 93,
-                padding: EdgeInsets.all(18),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          userCardData.name,
-                          style: TextStyle(
-                              fontSize: 32,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFFFFFFFF)),
+            child: Stack(children: [
+              Container(
+                alignment: Alignment.bottomLeft,
+                decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(16)),
+                    image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(userCardData.img))),
+                child: Container(
+                  height: 93,
+                  padding: EdgeInsets.all(18),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            userCardData.name,
+                            style: TextStyle(
+                                fontSize: 32,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFFFFFFFF)),
+                          ),
+                          Row(
+                            children: [
+                              buildRowGap(1.0),
+                              svgLocation(),
+                              buildRowGap(8.0),
+                              Text(
+                                '${userCardData.location} | ${userCardData.hobby}',
+                                style: TextStyle(
+                                    fontSize: 16, color: Color(0xFFEEEEEE)),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 8.0, vertical: 4.0),
+                        decoration: BoxDecoration(
+                          color: Color(0x33FF9877),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(16)),
                         ),
-                        Row(
-                          children: [
-                            buildRowGap(1.0),
-                            svgLocation(),
-                            buildRowGap(8.0),
-                            Text(
-                              userCardData.location,
-                              style: TextStyle(
-                                  fontSize: 16, color: Color(0xFF988DA2)),
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                    Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-                      decoration: BoxDecoration(
-                        color: Color(0x33FF9877),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(16)),
-                      ),
-                      child: Text(
-                        '${userCardData.age}age',
-                        style: TextStyle(
-                            fontSize: 14,
-                            color: Color(0xFFFF9877),
-                            fontWeight: FontWeight.bold),
-                      ),
-                    )
-                  ],
+                        child: Text(
+                          '${userCardData.age}age',
+                          style: TextStyle(
+                              fontSize: 14,
+                              color: Color(0xFFFF9877),
+                              fontWeight: FontWeight.bold),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
+              Positioned(
+                child: userCardData.star ? svgStared() : svgUnStar(),
+                right: 0,
+                top: 0,
+              ),
+            ]),
           ),
         ],
       ),

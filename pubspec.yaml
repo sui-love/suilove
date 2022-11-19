@@ -97,6 +97,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - logo.svg
+    - logo-l.svg
     - tick.svg
     - back.svg
     - new_to.svg
@@ -119,9 +120,12 @@ flutter:
     - delete.svg
     - discord.svg
     - like.svg
-    - product.svg
+    - twitter.svg
+
     - star.svg
     - location.svg
+    - unstar.svg
+    - stared.svg
 
     - usdt.png
 
