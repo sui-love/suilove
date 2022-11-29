@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "Sui Love",
+    "slug": "sui-love",
+    "version": "0.0.1",
+    "orientation": "portrait",
+    "icon": "./assets/logo.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "love.sui"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "love.sui"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b6f7f909-e076-4401-9d48-ab8e16130deb"
+      }
+    },
+    "owner": "defiport-jclee"
+  }
+}
