@@ -116,7 +116,6 @@ class ProfileStore {
 
     changeValue(label, value) {
         const activieProfileItem = this.profileItemList.find(it => it.label === label);
-        console.log(activieProfileItem);
         if(activieProfileItem) {
             activieProfileItem.value = value;
         }
