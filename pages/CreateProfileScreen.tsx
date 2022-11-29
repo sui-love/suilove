@@ -1,55 +1,38 @@
 import {observer} from "mobx-react-lite";
-import * as React from "react";
-import {useState} from "react";
+import {useState, useCallback} from "react";
 import themeStore from "../store/ThemeStore";
 import {View, ScrollView, StyleSheet, Text, Image, TouchableOpacity} from "react-native";
 import {NavigationHelpers} from "@react-navigation/native";
 import {buildColumnGap, buildRowGap} from "../utils/layout";
 import Button from "../componenets/Button";
+import ProfileStore, { ProfileItemType } from "../store/ProfileStore";
 
 const CreateProfileScreen = observer(({navigation}: { navigation: NavigationHelpers<any> }) => {
     const [theme] = useState(() => themeStore);
+    const [profile] = useState(() => ProfileStore);
 
-    const [SelectCards] = useState([
-        {
-            icon: require('../assets/icon-username.png'),
-            label: 'Username',
-            value: 'Lover',
-        },
-        {
-            icon: require('../assets/icon-age.png'),
-            label: 'Age',
-            value: 18,
-        },
-        {
-            icon: require('../assets/icon-gender.png'),
-            label: 'Gender',
-            value: 'Female',
-        },
-        {
-            icon: require('../assets/icon-country.png'),
-            label: 'Country',
-            value: 'Sydney',
-        },
-        {
-            icon: require('../assets/icon-like.png'),
-            label: 'I like',
-            value: 'Play',
-        },
-        {
-            icon: require('../assets/icon-lang.png'),
-            label: 'Language',
-            value: 'English',
+    const onPressCard = useCallback((it) => {
+        navigation.navigate("ProfileForm", {
+            ...it
+        });
+    }, []);
+
+    const toString = (it) => {
+        if(it.type === ProfileItemType.SELECT) {
+            return it.options.find(option => option.value === it.value)?.label ?? ''
         }
-    ]);
+        if(it.type === ProfileItemType.MULTISELECT) {
+            return it.value.map(value => it.options.find(option => option.value === value).label).join(' ')
+        }
+    }
 
     return (
         <View style={theme.currentThemeStyles.page}>
             <ScrollView style={styles.scrollView}>
                 {
-                    SelectCards.map((it, index) => {
+                    profile.profileItemList.map((it, index) => {
                         return (
-                            <TouchableOpacity key={index}>
+                            <TouchableOpacity key={index} onPress={() => onPressCard(it)}>
                                 <View style={styles.card}>
                                     <Image style={styles.icon} source={it.icon}></Image>
                                     <View style={styles.content}>
@@ -57,7 +40,7 @@ const CreateProfileScreen = observer(({navigation}: { navigation: NavigationHelp
                                             {it.label}
                                         </Text>
                                         <Text style={styles.value}>
-                                            {it.value}
+                                            {toString(it)}
                                         </Text>
                                     </View>
 
@@ -67,7 +50,6 @@ const CreateProfileScreen = observer(({navigation}: { navigation: NavigationHelp
                                     </View>
                                 </View>
                             </TouchableOpacity>
-
                         )
                     })
                 }
@@ -96,7 +78,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 28,
     },
     card: {
-        height: 84,
+        minHeight: 84,
         backgroundColor: 'white',
         shadowColor: '#000000',
         borderRadius: 16,

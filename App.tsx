@@ -8,6 +8,7 @@ import themeStore from "./store/ThemeStore";
 import {observer} from "mobx-react-lite";
 import {Image} from "react-native";
 import CreateProfileScreen from "./pages/CreateProfileScreen";
+import ProfileFormScreen from './pages/sub/ProfileFormScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +25,7 @@ const App = observer( () =>  {
                 }} component={WelcomeScreen}/>
                 <Stack.Screen name="Home" component={HomeScreen}/>
                 <Stack.Screen name="CreateProfile" options={{ title: 'Create Your Profile', headerBackTitleVisible: false }} component={CreateProfileScreen}/>
+                <Stack.Screen name="ProfileForm" options={{ headerBackTitleVisible: false }} component={ProfileFormScreen}/>
             </Stack.Navigator>
         </NavigationContainer>
     );
