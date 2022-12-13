@@ -1,11 +1,12 @@
 import { observer } from "mobx-react-lite";
 import { useState, useCallback } from "react";
 import themeStore from "../store/ThemeStore";
-import { View, ScrollView, Text, Image, TouchableOpacity } from "react-native";
+import { View, ScrollView, Text, Image, TouchableOpacity, ImageBackground } from "react-native";
 import { NavigationHelpers } from "@react-navigation/native";
 import { buildColumnGap, buildRowGap } from "../utils/layout";
 import Button from "../componenets/Button";
 import ProfileStore, { ProfileItemType } from "../store/ProfileStore";
+import * as ImagePicker from 'expo-image-picker';
 
 const CreateProfileScreen = observer(({ navigation, route }: { navigation: NavigationHelpers<any>, route: any }) => {
     const [theme] = useState(() => themeStore);
@@ -18,6 +19,23 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
             ...it
         });
     }, []);
+
+    const [image, setImage] = useState(null);
+    const pickImage = async () => {
+        // No permissions request is necessary for launching the image library
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+            base64: true
+        });
+
+        if (!result.canceled) {
+            setImage(result.assets[0].base64);
+        }
+    };
+
 
     const toString = (it) => {
         if (it.type === ProfileItemType.SELECT) {
@@ -34,6 +52,38 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
                 paddingVertical: 24,
                 paddingHorizontal: 28,
             }}>
+                <TouchableOpacity activeOpacity={0.5} onPress={pickImage}>
+                    <View style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>
+                        <View style={{
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            height: 100,
+                            width: 100,
+                            backgroundColor: '#F5F3F7',
+                            borderRadius: 24,
+                            overflow: 'hidden'
+                        }}>
+                            {
+                                image ? (
+                                    <ImageBackground style={{ height: 100, width: 100 }}
+                                    source={{uri: 'data:image/jpeg;base64,'  + image}}></ImageBackground>
+                                ): (
+                                    <ImageBackground style={{ height: 32, width: 32 }}
+                                    source={require('../assets/icon-camera.png')}></ImageBackground>
+                                )
+                            }
+                        </View>
+                        {buildColumnGap(12)}
+                        <Text style={{ fontSize: 18, color: '#CBC3D2' }}>UserImage</Text>
+                    </View>
+                </TouchableOpacity>
+
+                {buildColumnGap(30)}
+
                 {
                     profile.profileItemList.map((it, index) => {
                         return (

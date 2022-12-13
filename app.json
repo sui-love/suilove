@@ -33,6 +33,14 @@
         "projectId": "b6f7f909-e076-4401-9d48-ab8e16130deb"
       }
     },
-    "owner": "defiport-jclee"
+    "owner": "defiport-jclee",
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you upload them to contract."
+        }
+      ]
+    ]
   }
 }
