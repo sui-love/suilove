@@ -1,13 +1,13 @@
-import {Linking, StyleSheet, View} from "react-native";
+import { Linking, View } from "react-native";
 import * as React from "react";
-import {NavigationHelpers} from "@react-navigation/native";
-import {useState} from "react";
+import { NavigationHelpers } from "@react-navigation/native";
+import { useState } from "react";
 import themeStore from "../store/ThemeStore";
-import {observer} from "mobx-react-lite";
+import { observer } from "mobx-react-lite";
 import Button from "../componenets/Button";
-import {buildColumnGap, buildRowGap} from "../utils/layout";
+import { buildColumnGap, buildRowGap } from "../utils/layout";
 import Carousel from "react-native-snap-carousel";
-import CarouselCardItem, {ITEM_WIDTH, SLIDER_WIDTH} from "../componenets/CarouselCardItem";
+import CarouselCardItem, { ITEM_WIDTH, SLIDER_WIDTH } from "../componenets/CarouselCardItem";
 
 const userCardData = [
     {
@@ -75,13 +75,19 @@ const userCardData = [
     }
 ];
 
-const WelcomeScreen = observer(({navigation}: { navigation: NavigationHelpers<any> }) => {
+const WelcomeScreen = observer(({ navigation }: { navigation: NavigationHelpers<any> }) => {
     const [theme] = useState(() => themeStore);
 
     return (
         <View style={theme.currentThemeStyles.page}>
-            <View style={styles.container}>
-                <View style={styles.buttonGroup}>
+            <View style={{
+                flex: 1
+            }}>
+                <View style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    paddingHorizontal: 28,
+                }}>
                     <Button color="#FFD25F" type="normal" text="Twitter" onPress={() => {
                         Linking.openURL('https://twitter.com/suii_driveweb3');
                     }}></Button>
@@ -101,11 +107,14 @@ const WelcomeScreen = observer(({navigation}: { navigation: NavigationHelpers<an
                     itemWidth={ITEM_WIDTH}
                     useScrollView={true}
                     firstItem={0}
-                    vertical={false}/>
+                    vertical={false} />
 
                 {buildColumnGap(20)}
 
-                <View style={styles.buttonStart}>
+                <View style={{
+                    height: 68,
+                    paddingHorizontal: 28,
+                }}>
                     <Button color="#FF9877" type="normal" text="Start use" onPress={() => {
                         navigation.navigate('CreateWallet')
                     }}></Button>
@@ -116,37 +125,5 @@ const WelcomeScreen = observer(({navigation}: { navigation: NavigationHelpers<an
         </View>
     );
 });
-
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1
-    },
-    buttonGroup: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingHorizontal: 28,
-    },
-    cardContainer: {
-        flex: 1,
-    },
-    card: {
-        flex: 1,
-        borderRadius: 4,
-        borderWidth: 2,
-        justifyContent: "center",
-        backgroundColor: "white",
-    },
-    text: {
-        textAlign: "center",
-        fontSize: 50,
-        backgroundColor: "transparent"
-    },
-    buttonStart: {
-        height: 68,
-        paddingHorizontal: 28,
-    }
-});
-
 
 export default WelcomeScreen;

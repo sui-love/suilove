@@ -8,7 +8,7 @@ import Button from "../componenets/Button";
 import { buildColumnGap } from "../utils/layout";
 
 const BackupWalletScreen = observer(({ navigation, route }: { navigation: NavigationHelpers<any>, route: any }) => {
-  const mnemonic = route.params.mnemonic;
+  const mnemonic = route?.params?.mnemonic;
   const [theme] = useState(() => themeStore);
   return (
     <View style={theme.currentThemeStyles.page}>
@@ -54,7 +54,9 @@ const BackupWalletScreen = observer(({ navigation, route }: { navigation: Naviga
             type="normal"
             text="Done"
             onPress={() => {
-              navigation.navigate('CreateProfile');
+              if (mnemonic) {
+                navigation.navigate('CreateProfile', { mnemonic });
+              }
             }}></Button>
         </View>
       </View>

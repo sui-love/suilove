@@ -11,7 +11,7 @@ const ProfileFormScreen = observer(({ route, navigation }) => {
     const [profile] = useState(() => ProfileStore);
     const { label } = route.params;
     const profileItem = profile.profileItemList.find(it => it.label === label);
-    const [ multiSeletced, setMultiSeletced ] = useState<any[]>(profileItem.value as any[]);
+    const [multiSeletced, setMultiSeletced] = useState<any[]>(profileItem.value as any[]);
 
     const onPressSelectItem = useCallback(async (it) => {
         profile.changeValue(profileItem.label, it.value);
@@ -20,11 +20,11 @@ const ProfileFormScreen = observer(({ route, navigation }) => {
     }, []);
 
     const onPressSelectMutilItem = useCallback(async (it) => {
-       if(multiSeletced.includes(it.value)) {
-          setMultiSeletced(multiSeletced.filter(selected => selected !== it.value))
-       } else {
-          setMultiSeletced(multiSeletced.concat(it.value))
-       }
+        if (multiSeletced.includes(it.value)) {
+            setMultiSeletced(multiSeletced.filter(selected => selected !== it.value))
+        } else {
+            setMultiSeletced(multiSeletced.concat(it.value))
+        }
     }, [multiSeletced]);
 
     navigation.setOptions({
@@ -33,7 +33,7 @@ const ProfileFormScreen = observer(({ route, navigation }) => {
     if (profileItem.type === ProfileItemType.SELECT) {
         return (
             <View style={theme.currentThemeStyles.page}>
-                <ScrollView style={styles.scrollView}>
+                <ScrollView style={{ paddingHorizontal: 28 }}>
                     {
                         profileItem.options?.map(it => (
                             <TouchableOpacity key={it.label} activeOpacity={0.5} onPress={() => onPressSelectItem(it)}>
@@ -63,14 +63,25 @@ const ProfileFormScreen = observer(({ route, navigation }) => {
         navigation.setOptions({
             headerRight: () => (
                 <TouchableOpacity activeOpacity={0.5} onPress={onPressConfirm}>
-                    <Text style={styles.confirmText}>Confirm</Text>
+                    <Text style={{
+                        fontSize: 15,
+                        color: '#FFF',
+                        borderWidth: 1,
+                        borderColor: '#FF9877',
+                        backgroundColor: '#FF9877',
+                        paddingVertical: 6,
+                        paddingHorizontal: 12,
+                        borderRadius: 4,
+                        overflow: 'hidden',
+                        fontWeight: '500'
+                    }}>Confirm</Text>
                 </TouchableOpacity>
             ),
         });
 
         return (
             <View style={theme.currentThemeStyles.page}>
-                <ScrollView style={styles.scrollView}>
+                <ScrollView style={{ paddingHorizontal: 28 }}>
                     {
                         profileItem.options?.map(it => (
                             <TouchableOpacity key={it.label} activeOpacity={0.5} onPress={() => onPressSelectMutilItem(it)}>
@@ -99,21 +110,6 @@ const ProfileFormScreen = observer(({ route, navigation }) => {
 });
 
 const styles = StyleSheet.create({
-    confirmText: {
-        fontSize: 15,
-        color: '#FFF',
-        borderWidth: 1,
-        borderColor: '#FF9877',
-        backgroundColor: '#FF9877',
-        paddingVertical: 6,
-        paddingHorizontal: 12,
-        borderRadius: 4,
-        overflow: 'hidden',
-        fontWeight: '500'
-    },
-    scrollView: {
-        paddingHorizontal: 28
-    },
     selectItem: {
         paddingVertical: 20,
         alignItems: 'center',

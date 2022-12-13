@@ -49,7 +49,7 @@ const CreateWalletScreen = observer(({ navigation }: { navigation: NavigationHel
             type="normal"
             text="Import new wallet"
             onPress={() => {
-              navigation.navigate('CreateProfile')
+              navigation.navigate('Import Wallet')
             }}></Button>
         </View>
 
