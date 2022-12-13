@@ -1,3 +1,4 @@
+import './global.native';
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -10,6 +11,8 @@ import { Image, View } from "react-native";
 import CreateProfileScreen from "./pages/CreateProfileScreen";
 import ProfileFormScreen from './pages/sub/ProfileFormScreen';
 import CreateWalletScreen from './pages/CreateWalletScreen';
+import CreateNewWalletScreen from './pages/CreateNewWalletScreen';
+import BackupWalletScreen from './pages/BackupWalletScreen';
 import { buildEmptyView } from './utils/layout';
 
 const Stack = createNativeStackNavigator();
@@ -22,12 +25,29 @@ const App = observer(() => {
                 headerStyle: theme.currentThemeStyles.header,
                 headerShadowVisible: false
             }}>
-                <Stack.Screen
+                 <Stack.Screen
                     name="Welcome"
                     options={{
                         headerTitle: () => <Image style={{ height: 62, width: 200, resizeMode: 'cover' }} source={require('./assets/logo.jpg')}></Image>
                     }}
                     component={WelcomeScreen}
+                />
+                
+                <Stack.Screen
+                    name="Backup Wallet"
+                    options={{
+                        headerBackTitleVisible: false,
+                        headerTitle: buildEmptyView
+                    }}
+                    component={BackupWalletScreen}
+                />
+                <Stack.Screen
+                    name="Create New Wallet"
+                    options={{
+                        headerBackTitleVisible: false,
+                        headerTitle: buildEmptyView
+                    }}
+                    component={CreateNewWalletScreen}
                 />
                 <Stack.Screen
                     name="CreateWallet"
@@ -37,11 +57,14 @@ const App = observer(() => {
                     }}
                     component={CreateWalletScreen}
                 />
+            
                 <Stack.Screen name="Home" component={HomeScreen} />
+
                 <Stack.Screen
                     name="CreateProfile"
                     options={{ title: 'Create Your Profile', headerBackTitleVisible: false }}
                     component={CreateProfileScreen} />
+                    
                 <Stack.Screen
                     name="ProfileForm"
                     options={{ headerBackTitleVisible: false }}
