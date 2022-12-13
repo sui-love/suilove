@@ -11,7 +11,7 @@ const CreateWalletScreen = observer(({ navigation }: { navigation: NavigationHel
   const [theme] = useState(() => themeStore);
   return (
     <View style={theme.currentThemeStyles.page}>
-      {buildColumnGap(52)}
+      {buildColumnGap(12)}
       <View style={{ flex: 1 }}>
         <ImageBackground
           style={{ height: '100%', width: '100%' }}

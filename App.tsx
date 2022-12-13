@@ -10,6 +10,7 @@ import { Image, View } from "react-native";
 import CreateProfileScreen from "./pages/CreateProfileScreen";
 import ProfileFormScreen from './pages/sub/ProfileFormScreen';
 import CreateWalletScreen from './pages/CreateWalletScreen';
+import { buildEmptyView } from './utils/layout';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,20 +23,21 @@ const App = observer(() => {
                 headerShadowVisible: false
             }}>
                 <Stack.Screen
-                    name="CreateWallet"
-                    options={{
-                        headerShown: false
-                    }}
-                    component={CreateWalletScreen}
-                />
-                <Stack.Screen name="Home" component={HomeScreen} />
-                <Stack.Screen
                     name="Welcome"
                     options={{
                         headerTitle: () => <Image style={{ height: 62, width: 200, resizeMode: 'cover' }} source={require('./assets/logo.jpg')}></Image>
                     }}
                     component={WelcomeScreen}
                 />
+                <Stack.Screen
+                    name="CreateWallet"
+                    options={{
+                        headerBackTitleVisible: false,
+                        headerTitle: buildEmptyView
+                    }}
+                    component={CreateWalletScreen}
+                />
+                <Stack.Screen name="Home" component={HomeScreen} />
                 <Stack.Screen
                     name="CreateProfile"
                     options={{ title: 'Create Your Profile', headerBackTitleVisible: false }}

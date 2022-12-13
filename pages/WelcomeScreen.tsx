@@ -107,7 +107,7 @@ const WelcomeScreen = observer(({navigation}: { navigation: NavigationHelpers<an
 
                 <View style={styles.buttonStart}>
                     <Button color="#FF9877" type="normal" text="Start use" onPress={() => {
-                        navigation.navigate('CreateProfile')
+                        navigation.navigate('CreateWallet')
                     }}></Button>
                 </View>
 

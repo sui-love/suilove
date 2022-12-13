@@ -7,3 +7,7 @@ export function buildRowGap(gap: number) {
 export function buildColumnGap(gap: number) {
     return <View style={{height: gap}}></View>
 }
+
+export function buildEmptyView() {
+    return <View></View>
+}
