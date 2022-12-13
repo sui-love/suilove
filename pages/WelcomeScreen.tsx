@@ -112,7 +112,7 @@ const WelcomeScreen = observer(({ navigation }: { navigation: NavigationHelpers<
                 {buildColumnGap(20)}
 
                 <View style={{
-                    height: 68,
+                    height: 44,
                     paddingHorizontal: 28,
                 }}>
                     <Button color="#FF9877" type="normal" text="Start use" onPress={() => {

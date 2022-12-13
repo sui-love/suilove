@@ -23,6 +23,8 @@ const App = observer(() => {
     return (
         <NavigationContainer>
             <Stack.Navigator screenOptions={{
+                animation: 'slide_from_right',
+                presentation: 'card',
                 headerStyle: theme.currentThemeStyles.header,
                 headerShadowVisible: false
             }}>
