@@ -28,17 +28,17 @@ const App = observer(() => {
             }}>
 
                 <Stack.Screen
-                    name="CreateProfile"
-                    options={{ title: 'Create Your Profile', headerBackTitleVisible: false }}
-                    component={CreateProfileScreen} />
-
-                <Stack.Screen
                     name="Welcome"
                     options={{
                         headerTitle: () => <Image style={{ height: 62, width: 200, resizeMode: 'cover' }} source={require('./assets/logo.jpg')}></Image>
                     }}
                     component={WelcomeScreen}
                 />
+
+                <Stack.Screen
+                    name="CreateProfile"
+                    options={{ title: 'Create Your Profile', headerBackTitleVisible: false }}
+                    component={CreateProfileScreen} />
 
                 <Stack.Screen
                     name="Import Wallet"
