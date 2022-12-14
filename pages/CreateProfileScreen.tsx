@@ -44,6 +44,9 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
         if (it.type === ProfileItemType.MULTISELECT) {
             return it.value.map(value => it.options.find(option => option.value === value).label).join(' ')
         }
+        if (it.type === ProfileItemType.INPUT) {
+            return it.value ?? ''
+        }
     }
 
     return (
@@ -90,18 +93,12 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
                             <TouchableOpacity key={index} onPress={() => onPressCard(it)}>
                                 <View style={{
                                     minHeight: 84,
-                                    backgroundColor: 'white',
-                                    shadowColor: '#000000',
-                                    borderRadius: 16,
-                                    shadowOffset: {
-                                        width: 3,
-                                        height: 3,
-                                    },
-                                    shadowOpacity: 0.08,
-                                    shadowRadius: 10,
                                     padding: 16,
                                     flexDirection: 'row',
-                                    marginBottom: 16
+                                    marginBottom: 16,
+                                    borderWidth: 1,
+                                    borderColor: '#eee',
+                                    borderRadius: 18
                                 }}>
                                     <Image style={{
                                         height: 18,
@@ -143,6 +140,8 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
                         )
                     })
                 }
+
+                { buildColumnGap(48) }
             </ScrollView>
 
             <View style={{

@@ -1,9 +1,10 @@
 import { useCallback, useState } from "react";
 import { observer } from "mobx-react-lite";
 import themeStore from "../../store/ThemeStore";
-import { View, ScrollView, StyleSheet, Text, TouchableOpacity, Image } from "react-native";
+import { View, ScrollView, StyleSheet, Text, TouchableOpacity, Image, TextInput } from "react-native";
 import ProfileStore, { ProfileItemType } from "../../store/ProfileStore";
 import { sleep } from "../../utils";
+import { buildColumnGap } from "../../utils/layout";
 
 // @ts-ignore
 const ProfileFormScreen = observer(({ route, navigation }) => {
@@ -30,6 +31,7 @@ const ProfileFormScreen = observer(({ route, navigation }) => {
     navigation.setOptions({
         title: `${label}`,
     });
+
     if (profileItem.type === ProfileItemType.SELECT) {
         return (
             <View style={theme.currentThemeStyles.page}>
@@ -100,13 +102,59 @@ const ProfileFormScreen = observer(({ route, navigation }) => {
             </View>
         )
     }
-    return (
-        <View style={theme.currentThemeStyles.page}>
-            <ScrollView>
 
-            </ScrollView>
-        </View>
-    );
+    const [inputValue, setInputValue] = useState(profileItem.value as string);
+    const onPressConfirmInput = useCallback(async () => {
+        if(!inputValue) {
+            return;
+        }
+        profile.changeValue(profileItem.label, inputValue);
+        await sleep(300);
+        navigation.pop();
+    }, [inputValue]);
+
+    if (profileItem.type === ProfileItemType.INPUT) {
+        navigation.setOptions({
+            headerRight: () => (
+                <TouchableOpacity activeOpacity={0.5} onPress={onPressConfirmInput}>
+                    <Text style={{
+                        fontSize: 15,
+                        color: '#FFF',
+                        borderWidth: 1,
+                        borderColor: '#FF9877',
+                        backgroundColor: '#FF9877',
+                        paddingVertical: 6,
+                        paddingHorizontal: 12,
+                        borderRadius: 4,
+                        overflow: 'hidden',
+                        fontWeight: '500'
+                    }}>Confirm</Text>
+                </TouchableOpacity>
+            ),
+        });
+
+        return (
+            <View style={theme.currentThemeStyles.page}>
+                <ScrollView>
+                    <View style={{ padding: 28 }}>
+                        <TextInput
+                            value={inputValue}
+                            onChangeText={setInputValue}
+                            maxLength={16}
+                            style={{
+                                backgroundColor: 'rgba(255,152,119,0.2)',
+                                borderColor: '#FF9877',
+                                borderWidth: 1,
+                                borderRadius: 8,
+                                padding: 8,
+                                fontSize: 16
+                            }}>
+                        </TextInput>
+                    </View>
+                </ScrollView>
+            </View>
+        )
+    }
 });
 
 const styles = StyleSheet.create({
