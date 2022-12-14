@@ -44,7 +44,18 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
                 visibilityTime: 2000,
             });
         }
-     }, [mnemonic, profile])
+        const submitData = {
+            ...profile.getValue(),
+            img: image
+        };
+        console.log(submitData);
+
+        return Toast.show({
+            type: 'success',
+            text1: 'Profile successfully created',
+            visibilityTime: 2000,
+        });
+     }, [mnemonic, profile, image])
 
 
     const toString = (it) => {
