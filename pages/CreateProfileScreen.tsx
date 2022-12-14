@@ -3,16 +3,16 @@ import { useState, useCallback } from "react";
 import themeStore from "../store/ThemeStore";
 import { View, ScrollView, Text, Image, TouchableOpacity, ImageBackground } from "react-native";
 import { NavigationHelpers } from "@react-navigation/native";
-import { buildColumnGap, buildRowGap } from "../utils/layout";
+import { buildColumnGap } from "../utils/layout";
 import Button from "../componenets/Button";
 import ProfileStore, { ProfileItemType } from "../store/ProfileStore";
 import * as ImagePicker from 'expo-image-picker';
+import Toast from 'react-native-toast-message';
 
 const CreateProfileScreen = observer(({ navigation, route }: { navigation: NavigationHelpers<any>, route: any }) => {
     const [theme] = useState(() => themeStore);
     const [profile] = useState(() => ProfileStore);
     const mnemonic = route?.params?.mnemonic;
-    console.log(mnemonic);
 
     const onPressCard = useCallback((it) => {
         navigation.navigate("ProfileForm", {
@@ -24,7 +24,7 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
     const pickImage = async () => {
         // No permissions request is necessary for launching the image library
         let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
             allowsEditing: true,
             aspect: [4, 3],
             quality: 1,
@@ -35,6 +35,16 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
             setImage(result.assets[0].base64);
         }
     };
+
+    const onSubmit = useCallback(() => {
+        if(!image){
+            return Toast.show({
+                type: 'error',
+                text1: 'Please select user image.',
+                visibilityTime: 2000,
+            });
+        }
+     }, [mnemonic, profile])
 
 
     const toString = (it) => {
@@ -144,16 +154,14 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
                 { buildColumnGap(48) }
             </ScrollView>
 
+            { buildColumnGap(8) }
+
             <View style={{
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 paddingHorizontal: 28,
             }}>
-                <Button color="#FF9877" type="normal" text="Submit" onPress={() => {
-                }}></Button>
-                {buildRowGap(30)}
-                <Button color="#00000033" type="normal" text="Cancel" onPress={() => {
-                }}></Button>
+                <Button color="#FF9877" type="normal" text="Submit" onPress={onSubmit}></Button>
             </View>
             {buildColumnGap(28)}
         </View>

@@ -16,6 +16,7 @@ import BackupWalletScreen from './pages/BackupWalletScreen';
 import ImportWalletScreen from './pages/ImportWalletScreen';
 import { buildEmptyView } from './utils/layout';
 import { StatusBar } from 'expo-status-bar';
+import Toast from 'react-native-toast-message';
 
 const Stack = createNativeStackNavigator();
 
@@ -86,6 +87,8 @@ const App = observer(() => {
                     options={{ headerBackTitleVisible: false }}
                     component={ProfileFormScreen} />
             </Stack.Navigator>
+
+            <Toast />
         </NavigationContainer>
     );
 });

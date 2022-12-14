@@ -12,7 +12,8 @@ class ProfileStore {
             icon: require('../assets/icon-username.png'),
             label: 'Username',
             value: 'Lover',
-            type: ProfileItemType.INPUT
+            type: ProfileItemType.INPUT,
+            key: 'username'
         },
         {
             icon: require('../assets/icon-age.png'),
@@ -119,6 +120,13 @@ class ProfileStore {
         if(activieProfileItem) {
             activieProfileItem.value = value;
         }
+    }
+
+    getValue() {
+        return this.profileItemList.reduce((result, profileItem) => {
+            result[`${profileItem.key ?? profileItem.label}`] = profileItem.value;
+            return result;
+        }, {})
     }
 }
 
