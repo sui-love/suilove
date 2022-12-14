@@ -16,7 +16,7 @@
     "@types/react-native": "~0.70.6",
     "expo": "~47.0.8",
     "expo-image-picker": "~14.0.2",
-    "expo-status-bar": "~1.4.2",
+    "expo-status-bar": "^1.4.2",
     "fastestsmallesttextencoderdecoder": "^1.0.22",
     "mobx": "^6.7.0",
     "mobx-react-lite": "^3.4.0",

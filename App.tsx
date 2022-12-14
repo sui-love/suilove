@@ -15,6 +15,7 @@ import CreateNewWalletScreen from './pages/CreateNewWalletScreen';
 import BackupWalletScreen from './pages/BackupWalletScreen';
 import ImportWalletScreen from './pages/ImportWalletScreen';
 import { buildEmptyView } from './utils/layout';
+import { StatusBar } from 'expo-status-bar';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,7 @@ const App = observer(() => {
     const [theme] = useState(() => themeStore);
     return (
         <NavigationContainer>
+            <StatusBar style={"dark"}></StatusBar>
             <Stack.Navigator screenOptions={{
                 animation: 'slide_from_right',
                 presentation: 'card',
@@ -78,8 +80,6 @@ const App = observer(() => {
                 />
 
                 <Stack.Screen name="Home" component={HomeScreen} />
-
-
 
                 <Stack.Screen
                     name="ProfileForm"
