@@ -56,7 +56,7 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
             setLoading(true);
             await sleep(0);
             const provider = new JsonRpcProvider(Network.DEVNET);
-            const keypair = Ed25519Keypair.deriveKeypair('hamster canal ostrich shield public sea rug stove property spike uniform exhibit');
+            const keypair = Ed25519Keypair.deriveKeypair(mnemonic);
             const signer = new RawSigner(keypair, provider);
             const moveCallTxn = await signer.executeMoveCall({
                 packageObjectId: '0xfe1ee8fc4f9a0fd7489a02c23ab40ed8c4566196',
