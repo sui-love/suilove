@@ -8,11 +8,15 @@ import Button from "../componenets/Button";
 import ProfileStore, { ProfileItemType } from "../store/ProfileStore";
 import * as ImagePicker from 'expo-image-picker';
 import Toast from 'react-native-toast-message';
+import { Ed25519Keypair, JsonRpcProvider, Network, RawSigner } from '@mysten/sui.js';
+import Spinner from 'react-native-loading-spinner-overlay';
+import { sleep } from "../utils";
 
 const CreateProfileScreen = observer(({ navigation, route }: { navigation: NavigationHelpers<any>, route: any }) => {
     const [theme] = useState(() => themeStore);
     const [profile] = useState(() => ProfileStore);
     const mnemonic = route?.params?.mnemonic;
+    const [loading, setLoading] = useState(false);
 
     const onPressCard = useCallback((it) => {
         navigation.navigate("ProfileForm", {
@@ -27,7 +31,7 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
             allowsEditing: true,
             aspect: [4, 3],
-            quality: 1,
+            quality: 0.8,
             base64: true
         });
 
@@ -36,26 +40,60 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
         }
     };
 
-    const onSubmit = useCallback(() => {
-        if(!image){
+    const onSubmit = useCallback(async () => {
+        if (!image) {
             return Toast.show({
                 type: 'error',
                 text1: 'Please select user image.',
                 visibilityTime: 2000,
             });
         }
-        const submitData = {
+        const submitData: Record<string, any> = {
             ...profile.getValue(),
-            img: image
+            avatar: image
         };
-        console.log(submitData);
+        try {
+            setLoading(true);
+            await sleep(0);
+            const provider = new JsonRpcProvider(Network.DEVNET);
+            const keypair = Ed25519Keypair.deriveKeypair('hamster canal ostrich shield public sea rug stove property spike uniform exhibit');
+            const signer = new RawSigner(keypair, provider);
+            const moveCallTxn = await signer.executeMoveCall({
+                packageObjectId: '0xfe1ee8fc4f9a0fd7489a02c23ab40ed8c4566196',
+                module: 'user',
+                function: 'create_user_without_avatar_url',
+                typeArguments: [],
+                arguments: [
+                    submitData.nickname ?? 'default_lover', // nickname
+                    submitData.age, // age
+                    submitData.avatar, // avatar
+                    submitData.language, // language
+                    submitData.gender, // gender
+                    submitData.city ?? '', // city
+                    submitData.country, //country
+                    submitData.ilike, // ilike
+                    submitData.bio ?? 'Move', // bio
+                ],
+                gasBudget: 10000,
+            });
 
-        return Toast.show({
-            type: 'success',
-            text1: 'Profile successfully created',
-            visibilityTime: 2000,
-        });
-     }, [mnemonic, profile, image])
+            Toast.show({
+                type: 'success',
+                text1: 'Profile successfully created',
+                visibilityTime: 2000,
+            });
+
+        } catch (e) {
+            console.error(e);
+            Toast.show({
+                type: 'error',
+                text1: e.message,
+                visibilityTime: 2000,
+            });
+        } finally {
+            setLoading(false);
+        }
+    }, [mnemonic, profile, image])
 
 
     const toString = (it) => {
@@ -72,6 +110,17 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
 
     return (
         <View style={theme.currentThemeStyles.page}>
+             <Spinner
+                overlayColor="rgba(0, 0, 0, 0.75)"
+                animation="fade"
+                visible={loading}
+                textContent={'Loading...'}
+                color="#fff"
+                textStyle={{
+                    color: '#fff',
+                }}
+                />
+
             <ScrollView style={{
                 paddingVertical: 24,
                 paddingHorizontal: 28,
@@ -94,10 +143,10 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
                             {
                                 image ? (
                                     <ImageBackground style={{ height: 100, width: 100 }}
-                                    source={{uri: 'data:image/jpeg;base64,'  + image}}></ImageBackground>
-                                ): (
+                                        source={{ uri: 'data:image/jpeg;base64,' + image }}></ImageBackground>
+                                ) : (
                                     <ImageBackground style={{ height: 32, width: 32 }}
-                                    source={require('../assets/icon-camera.png')}></ImageBackground>
+                                        source={require('../assets/icon-camera.png')}></ImageBackground>
                                 )
                             }
                         </View>
@@ -162,10 +211,10 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
                     })
                 }
 
-                { buildColumnGap(48) }
+                {buildColumnGap(48)}
             </ScrollView>
 
-            { buildColumnGap(8) }
+            {buildColumnGap(8)}
 
             <View style={{
                 flexDirection: 'row',

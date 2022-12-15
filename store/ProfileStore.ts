@@ -13,7 +13,7 @@ class ProfileStore {
             label: 'Username',
             value: 'Lover',
             type: ProfileItemType.INPUT,
-            key: 'username'
+            key: 'nickname'
         },
         {
             icon: require('../assets/icon-age.png'),
@@ -25,89 +25,94 @@ class ProfileStore {
                     label: index + 1,
                     value: index + 1
                 }
-            })
+            }),
+            key: 'age'
         },
         {
             icon: require('../assets/icon-gender.png'),
             label: 'Gender',
-            value: 0,
+            value: 'Male',
             type: ProfileItemType.SELECT,
             options: [{
                 label: 'Male',
-                value: 0,
+                value: 'Male',
             }, {
                 label: 'Female',
-                value: 1
+                value: 'Female'
             }, {
                 label: 'Other',
-                value: 2
-            }]
+                value: 'Other',
+            }],
+            key: 'gender'
         },
         {
             icon: require('../assets/icon-country.png'),
             label: 'Country',
-            value: 0,
+            value: 'US',
             type: ProfileItemType.SELECT,
             options: [{
                 label: 'US',
-                value: 0,
+                value: 'US',
             }, {
                 label: 'Sydney',
-                value: 1
-            }]
+                value: 'Sydney',
+            }],
+            key: 'country'
         },
         {
             icon: require('../assets/icon-like.png'),
             label: 'I like',
-            value: [0],
+            value: ['Travel'],
             type: ProfileItemType.MULTISELECT,
             options: [
                 {
                     label: 'Travel',
-                    value: 0,
+                    value: 'Travel',
                 },
                 {
                     label: 'Movie',
-                    value: 1,
+                    value: 'Movie',
                 },
                 {
                     label: 'Reading',
-                    value: 2,
+                    value: 'Reading',
                 },
                 {
                     label: 'Fashion',
-                    value: 3,
+                    value: 'Fashion',
                 },
                 {
                     label: 'Tech',
-                    value: 4,
+                    value: 'Tech',
                 },
                 {
                     label: 'Migration',
-                    value: 5,
+                    value: 'Migration',
                 },
             ],
+            key: 'ilike'
         },
         {
             icon: require('../assets/icon-lang.png'),
             label: 'Language',
-            value: 0,
+            value: 'English',
             type: ProfileItemType.SELECT,
             options: [
                 {
                     label: 'English',
-                    value: 0,
+                    value: 'English',
                 },
                 {
                     label: 'Chinese',
-                    value: 1,
+                    value: 'Chinese',
                 },
                 {
                     label: 'Other',
-                    value: 2,
+                    value: 'Other',
                 },
-            
+
             ],
+            key: 'language'
         }
     ]
 
@@ -117,7 +122,7 @@ class ProfileStore {
 
     changeValue(label, value) {
         const activieProfileItem = this.profileItemList.find(it => it.label === label);
-        if(activieProfileItem) {
+        if (activieProfileItem) {
             activieProfileItem.value = value;
         }
     }
