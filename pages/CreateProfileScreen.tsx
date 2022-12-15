@@ -31,7 +31,7 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
             allowsEditing: true,
             aspect: [4, 3],
-            quality: 0.8,
+            quality: 0.1,
             base64: true
         });
 
@@ -76,6 +76,8 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
                 ],
                 gasBudget: 10000,
             });
+
+            console.log(moveCallTxn);
 
             Toast.show({
                 type: 'success',
