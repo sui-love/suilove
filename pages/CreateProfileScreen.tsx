@@ -77,8 +77,6 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
                 gasBudget: 10000,
             });
 
-            console.log(moveCallTxn);
-
             Toast.show({
                 type: 'success',
                 text1: 'Profile successfully created',
@@ -86,10 +84,13 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
             });
 
         } catch (e) {
-            console.error(e);
+            let message = e.message;
+            if(message.includes('Cannot find gas coin for signer address')){
+                message = 'Insufficient Gas!'
+            }
             Toast.show({
                 type: 'error',
-                text1: e.message,
+                text1: message,
                 visibilityTime: 2000,
             });
         } finally {

@@ -16,80 +16,108 @@ import BackupWalletScreen from './pages/BackupWalletScreen';
 import ImportWalletScreen from './pages/ImportWalletScreen';
 import { buildEmptyView } from './utils/layout';
 import { StatusBar } from 'expo-status-bar';
-import Toast from 'react-native-toast-message';
+import Toast, { BaseToast, ErrorToast } from 'react-native-toast-message';
 
 const Stack = createNativeStackNavigator();
+
+const toastConfig = {
+    success: (props) => (
+      <BaseToast
+        {...props}
+        style={{ borderLeftColor: 'green' }}
+        contentContainerStyle={{ paddingHorizontal: 8, borderRadius: 8 }}
+        text1Style={{
+          fontSize: 17,
+        }}
+      />
+    ),
+    
+    error: (props) => (
+      <ErrorToast
+        {...props}
+        style={{ borderLeftColor: 'red' }}
+        contentContainerStyle={{ paddingHorizontal: 8, borderRadius: 8 }}
+        text1Style={{
+          fontSize: 17,
+        }}
+        text2Style={{
+          fontSize: 15
+        }}
+      />
+    ),
+  };
 
 const App = observer(() => {
     const [theme] = useState(() => themeStore);
     return (
-        <NavigationContainer>
+        <>
+            <NavigationContainer>
+                <Stack.Navigator screenOptions={{
+                    animation: 'slide_from_right',
+                    presentation: 'card',
+                    headerStyle: theme.currentThemeStyles.header,
+                    headerShadowVisible: false
+                }}>
+
+                    <Stack.Screen
+                        name="Welcome"
+                        options={{
+                            headerTitle: () => <Image style={{ height: 62, width: 200, resizeMode: 'cover' }} source={require('./assets/logo.jpg')}></Image>
+                        }}
+                        component={WelcomeScreen}
+                    />
+
+                    <Stack.Screen
+                        name="CreateProfile"
+                        options={{ title: 'Create Your Profile', headerBackTitleVisible: false }}
+                        component={CreateProfileScreen} />
+
+                    <Stack.Screen
+                        name="Import Wallet"
+                        options={{
+                            headerShown: false
+                        }}
+                        component={ImportWalletScreen}
+                    />
+
+                    <Stack.Screen
+                        name="Backup Wallet"
+                        options={{
+                            headerBackTitleVisible: false,
+                            headerTitle: buildEmptyView
+                        }}
+                        component={BackupWalletScreen}
+                    />
+
+                    <Stack.Screen
+                        name="Create New Wallet"
+                        options={{
+                            headerBackTitleVisible: false,
+                            headerTitle: buildEmptyView
+                        }}
+                        component={CreateNewWalletScreen}
+                    />
+
+                    <Stack.Screen
+                        name="CreateWallet"
+                        options={{
+                            headerBackTitleVisible: false,
+                            headerTitle: buildEmptyView
+                        }}
+                        component={CreateWalletScreen}
+                    />
+
+                    <Stack.Screen name="Home" component={HomeScreen} />
+
+                    <Stack.Screen
+                        name="ProfileForm"
+                        options={{ headerBackTitleVisible: false }}
+                        component={ProfileFormScreen} />
+                </Stack.Navigator>
+            </NavigationContainer>
             <StatusBar style={"dark"}></StatusBar>
-            <Stack.Navigator screenOptions={{
-                animation: 'slide_from_right',
-                presentation: 'card',
-                headerStyle: theme.currentThemeStyles.header,
-                headerShadowVisible: false
-            }}>
-
-                <Stack.Screen
-                    name="Welcome"
-                    options={{
-                        headerTitle: () => <Image style={{ height: 62, width: 200, resizeMode: 'cover' }} source={require('./assets/logo.jpg')}></Image>
-                    }}
-                    component={WelcomeScreen}
-                />
-
-                <Stack.Screen
-                    name="CreateProfile"
-                    options={{ title: 'Create Your Profile', headerBackTitleVisible: false }}
-                    component={CreateProfileScreen} />
-
-                <Stack.Screen
-                    name="Import Wallet"
-                    options={{
-                        headerShown: false
-                    }}
-                    component={ImportWalletScreen}
-                />
-
-                <Stack.Screen
-                    name="Backup Wallet"
-                    options={{
-                        headerBackTitleVisible: false,
-                        headerTitle: buildEmptyView
-                    }}
-                    component={BackupWalletScreen}
-                />
-
-                <Stack.Screen
-                    name="Create New Wallet"
-                    options={{
-                        headerBackTitleVisible: false,
-                        headerTitle: buildEmptyView
-                    }}
-                    component={CreateNewWalletScreen}
-                />
-
-                <Stack.Screen
-                    name="CreateWallet"
-                    options={{
-                        headerBackTitleVisible: false,
-                        headerTitle: buildEmptyView
-                    }}
-                    component={CreateWalletScreen}
-                />
-
-                <Stack.Screen name="Home" component={HomeScreen} />
-
-                <Stack.Screen
-                    name="ProfileForm"
-                    options={{ headerBackTitleVisible: false }}
-                    component={ProfileFormScreen} />
-            </Stack.Navigator>
-
-            <Toast />
-        </NavigationContainer>
+            <Toast config={toastConfig} topOffset={40}/>
+        </>
     );
 });
 
