@@ -50,7 +50,7 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
                 keypair.getPublicKey().toSuiAddress()
             );
             return Toast.show({
-                type: 'error',
+                type: 'success',
                 text1: 'Request sui from faucet successfully.'
             });
         } catch(e) {
