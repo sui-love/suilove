@@ -3,7 +3,7 @@ import { useState, useCallback } from "react";
 import themeStore from "../store/ThemeStore";
 import { View, ScrollView, Text, Image, TouchableOpacity, ImageBackground } from "react-native";
 import { NavigationHelpers } from "@react-navigation/native";
-import { buildColumnGap } from "../utils/layout";
+import { buildColumnGap, buildRowGap } from "../utils/layout";
 import Button from "../componenets/Button";
 import ProfileStore, { ProfileItemType } from "../store/ProfileStore";
 import * as ImagePicker from 'expo-image-picker';
@@ -40,12 +40,36 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
         }
     };
 
+    const onFaucet = useCallback(async () => {
+        try {
+            setLoading(true);
+            await sleep(0);
+            const provider = new JsonRpcProvider(Network.DEVNET);
+            const keypair = Ed25519Keypair.deriveKeypair(mnemonic);
+            await provider.requestSuiFromFaucet(
+                keypair.getPublicKey().toSuiAddress()
+            );
+            return Toast.show({
+                type: 'error',
+                text1: 'Request sui from faucet successfully.'
+            });
+        } catch(e) {
+            console.error(e);
+            return Toast.show({
+                type: 'error',
+                text1: e.message
+            });
+        } finally {
+            setLoading(false);
+        }
+        
+    }, [mnemonic])
+
     const onSubmit = useCallback(async () => {
         if (!image) {
             return Toast.show({
                 type: 'error',
-                text1: 'Please select user image.',
-                visibilityTime: 2000,
+                text1: 'Please select user image.'
             });
         }
         const submitData: Record<string, any> = {
@@ -79,19 +103,17 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
 
             Toast.show({
                 type: 'success',
-                text1: 'Profile successfully created',
-                visibilityTime: 2000,
+                text1: 'Profile successfully created'
             });
 
         } catch (e) {
             let message = e.message;
-            if(message.includes('Cannot find gas coin for signer address')){
+            if (message.includes('Cannot find gas coin for signer address')) {
                 message = 'Insufficient Gas!'
             }
             Toast.show({
                 type: 'error',
-                text1: message,
-                visibilityTime: 2000,
+                text1: message
             });
         } finally {
             setLoading(false);
@@ -113,7 +135,7 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
 
     return (
         <View style={theme.currentThemeStyles.page}>
-             <Spinner
+            <Spinner
                 overlayColor="rgba(0, 0, 0, 0.75)"
                 animation="fade"
                 visible={loading}
@@ -122,7 +144,7 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
                 textStyle={{
                     color: '#fff',
                 }}
-                />
+            />
 
             <ScrollView style={{
                 paddingVertical: 24,
@@ -153,25 +175,23 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
                                 )
                             }
                         </View>
-                        {buildColumnGap(12)}
+                        {buildColumnGap(8)}
                         <Text style={{ fontSize: 18, color: '#CBC3D2' }}>UserImage</Text>
                     </View>
                 </TouchableOpacity>
 
-                {buildColumnGap(30)}
+                {buildColumnGap(16)}
 
                 {
                     profile.profileItemList.map((it, index) => {
                         return (
                             <TouchableOpacity key={index} onPress={() => onPressCard(it)}>
                                 <View style={{
-                                    minHeight: 84,
-                                    padding: 16,
+                                    padding: 8,
                                     flexDirection: 'row',
-                                    marginBottom: 16,
-                                    borderWidth: 1,
+                                    marginBottom: 8,
+                                    borderBottomWidth: 1,
                                     borderColor: '#eee',
-                                    borderRadius: 18
                                 }}>
                                     <Image style={{
                                         height: 18,
@@ -183,16 +203,14 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
                                     }}>
                                         <Text style={{
                                             fontSize: 16,
-                                            fontWeight: 'bold',
-                                            color: '#988DA2'
+                                            color: '#988DA2',
                                         }}>
                                             {it.label}
                                         </Text>
                                         <Text style={{
                                             fontSize: 16,
-                                            fontWeight: '400',
-                                            color: '#221232',
-                                            marginTop: 12
+                                            color: '#000',
+                                            marginTop: 4
                                         }}>
                                             {toString(it)}
                                         </Text>
@@ -217,7 +235,6 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
                 {buildColumnGap(48)}
             </ScrollView>
 
-            {buildColumnGap(8)}
 
             <View style={{
                 flexDirection: 'row',
@@ -225,6 +242,8 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
                 paddingHorizontal: 28,
             }}>
                 <Button color="#FF9877" type="normal" text="Submit" onPress={onSubmit}></Button>
+                {buildRowGap(12)}
+                <Button color='#589aea' type="normal" text="Faucet" onPress={onFaucet}></Button>
             </View>
             {buildColumnGap(28)}
         </View>

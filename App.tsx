@@ -116,7 +116,7 @@ const App = observer(() => {
                 </Stack.Navigator>
             </NavigationContainer>
             <StatusBar style={"dark"}></StatusBar>
-            <Toast config={toastConfig} topOffset={40}/>
+            <Toast config={toastConfig} visibilityTime={2000} topOffset={40}/>
         </>
     );
 });
