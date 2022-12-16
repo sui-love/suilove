@@ -9,7 +9,7 @@ interface ButtonProps {
 
 const Button = (props: ButtonProps) => {
     return (
-        <TouchableOpacity style={{
+        <TouchableOpacity activeOpacity={.5} style={{
             borderRadius: 16,
             flex: 1,
             height: 48,

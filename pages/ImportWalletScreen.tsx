@@ -17,7 +17,8 @@ const ImportWalletScreen = observer(({ navigation }: { navigation: NavigationHel
     }}>
       <View style={theme.currentThemeStyles.page}>
         <ImageBackground
-          style={{ height: 165, width: 165, position: 'absolute', right: 0 }}
+          style={{ height: 165, width: 165, position: 'absolute', right: 0, top: 0 }}
+          resizeMode="contain"
           source={require('../assets/icon-import-wallet.png')}
         />
 
@@ -42,6 +43,7 @@ const ImportWalletScreen = observer(({ navigation }: { navigation: NavigationHel
             disableFullscreenUI
             value={mnemonic}
             onChangeText={onChangeMnemonic}
+            textAlignVertical="top"
             style={{
               height: 178,
               backgroundColor: 'rgba(255,152,119,0.2)',

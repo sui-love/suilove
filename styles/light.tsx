@@ -5,6 +5,6 @@ export default StyleSheet.create({
     },
     page: {
         backgroundColor: '#fff',
-        flex: 1
+        flex: 1,
     }
 });
