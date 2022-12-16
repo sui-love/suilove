@@ -196,7 +196,9 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
                                     <Image style={{
                                         height: 18,
                                         width: 18,
+                                        marginTop: 1
                                     }} source={it.icon}></Image>
+                                    
                                     <View style={{
                                         paddingLeft: 12,
                                         flex: 1
