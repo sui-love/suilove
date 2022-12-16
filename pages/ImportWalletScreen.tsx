@@ -6,6 +6,7 @@ import { Text, View, ImageBackground, TextInput, TouchableWithoutFeedback } from
 import { NavigationHelpers } from "@react-navigation/native";
 import Button from "../componenets/Button";
 import { buildColumnGap } from "../utils/layout";
+import Toast from 'react-native-toast-message';
 
 const ImportWalletScreen = observer(({ navigation }: { navigation: NavigationHelpers<any> }) => {
   const [theme] = useState(() => themeStore);
@@ -44,6 +45,7 @@ const ImportWalletScreen = observer(({ navigation }: { navigation: NavigationHel
             value={mnemonic}
             onChangeText={onChangeMnemonic}
             textAlignVertical="top"
+            placeholder="husband globe decide film awful oppose eyebrow have firm rifle broccoli depend"
             style={{
               height: 178,
               backgroundColor: 'rgba(255,152,119,0.2)',
@@ -64,7 +66,11 @@ const ImportWalletScreen = observer(({ navigation }: { navigation: NavigationHel
               text="Done"
               onPress={() => {
                 if(!mnemonic) {
-                  return;
+                  return Toast.show({
+                      type: 'error',
+                      text1: 'Please input 12-word passphrase.',
+                      visibilityTime: 2000,
+                  });
                 }
                 navigation.navigate('CreateProfile', {
                   mnemonic
