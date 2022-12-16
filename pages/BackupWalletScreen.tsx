@@ -35,6 +35,7 @@ const BackupWalletScreen = observer(({ navigation, route }: { navigation: Naviga
           multiline
           value={mnemonic}
           editable={false}
+          textAlignVertical="top"
           style={{
             height: 108,
             backgroundColor: 'rgba(255,152,119,0.2)',
