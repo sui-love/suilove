@@ -52,9 +52,6 @@ const CreateWalletScreen = observer(({ navigation }: { navigation: NavigationHel
               navigation.navigate('Import Wallet')
             }}></Button>
         </View>
-
-        {buildColumnGap(40)}
-
       </View>
     </View>
   );

@@ -48,7 +48,6 @@ const CreateNewWalletScreen = observer(({ navigation }: { navigation: Navigation
             }}></Button>
         </View>
 
-        {buildColumnGap(88)}
       </View>
     </View>
   );

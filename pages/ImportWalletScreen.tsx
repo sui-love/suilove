@@ -71,8 +71,6 @@ const ImportWalletScreen = observer(({ navigation }: { navigation: NavigationHel
                 });
               }}></Button>
           </View>
-
-          {buildColumnGap(36)}
         </View>
       </View>
     </TouchableWithoutFeedback>
