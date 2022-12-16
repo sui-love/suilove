@@ -57,7 +57,7 @@ const CreateProfileScreen = observer(({ navigation, route }: { navigation: Navig
             console.error(e);
             return Toast.show({
                 type: 'error',
-                text1: e.message
+                text1: 'Request sui from faucet failed.'
             });
         } finally {
             setLoading(false);
